@@ -1,0 +1,30 @@
+ const { allCountrysDB } = require('../controllers/getControllers');
+ 
+ const allCountrys = async (req, res) => {
+    try{
+        const result = await allCountrysDB();
+        res.status(200).json(result);
+    }catch(error){
+        res.status(400).json({error:error.message})
+    }
+};
+
+const detailCountry =  (req, res)=>{
+    const id = req.params
+    res.status(200).send(`aca esta el pais ${id}`);
+};
+
+//const nameCountrys = (req, res)=>{
+  //  res.status(200).send(`aca esta el pais con nombre ...`);
+//};
+
+const allActivities = (req, res)=>{
+    res.status(200).send(`aca estan las actividades ...`);
+};
+
+module.exports = {
+    allCountrys,
+    detailCountry,
+    //nameCountrys,
+    allActivities
+}
