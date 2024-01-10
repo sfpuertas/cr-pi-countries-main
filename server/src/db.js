@@ -58,15 +58,21 @@ const createCountries = async ()=>{
           }else{
              capital = "no se especifico";
           }
+          let subregion;
+          if(arrCountries[i].hasOwnProperty("subregion")){
+            subregion= arrCountries[i].subregion;
+         }else{
+            subregion = "no se especifico";
+         }
           let area= arrCountries[i].area;
           let population= arrCountries[i].population;
 
-        createCountriesDB(id, name, flags, continents, capital, area, population);     
+        createCountriesDB(id, name, flags, continents, capital, area, subregion, population);     
 }
  
 }
- const createCountriesDB = async (id, name, flags, continents, capital, area, population)=>{  
-   return await Country.create({id, name, flags, continents, capital, area, population});  
+ const createCountriesDB = async (id, name, flags, continents, capital, area, subregion, population)=>{  
+   return await Country.create({id, name, flags, continents, capital, area, subregion, population});  
   
     //const aux2 = await Country.create({id, name, flags, continents, capital, area, population});
   

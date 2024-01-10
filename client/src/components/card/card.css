@@ -1,0 +1,24 @@
+.card-container{
+    /* display: flex; */
+    /* flex-direction:column; */
+    border: 1px solid grey;
+    cursor: pointer;
+    background-color: rgb(226, 220, 220);
+    height: 300px;
+    box-shadow: 10px 5px 5px 5px black;
+    border-radius: 20px;
+
+}
+
+
+.imagen{
+    height: 150px;
+    border-radius: 20px;
+}
+
+.datos{
+    font-size: 25px;
+    color: black;
+    -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+}

@@ -1,0 +1,15 @@
+.detail{
+    color: white;
+    background-color: black;
+    text-align: left;
+}
+
+.actividades{
+    border: 1px solid grey;
+    box-shadow: 10px 5px 5px 5px black;
+    width: 150px;
+    padding: 10px;
+}
+.act{
+    display: flex;
+}

@@ -1,0 +1,40 @@
+.nav-bar{
+   
+ 
+    margin-bottom: 0px;
+    display: flex;
+    height: 100px;
+    width: 50%;
+    align-items: center;
+    column-gap: 20px;
+
+
+   
+   
+    
+}
+
+.link1{
+   
+    text-decoration-line: none;
+    color: white;
+ 
+}
+
+.busqueda{
+    width: 200px;
+    height: 30px;
+    border-radius: 20px;
+
+}
+
+.boton{
+    width: 100px;
+    height: 30px;
+    border-radius: 20px;
+}
+
+.span{
+    font-size: 14;
+    color: white;
+}

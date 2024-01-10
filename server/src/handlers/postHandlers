@@ -2,9 +2,9 @@ const { createActivitiesDB, createCountriesDB } = require("../controllers/postco
 
 
 const createActivities = async (req, res) => {
-    const {name, dificultad, duracion, temporada} = req.body;
+    const {name, dificultad, duracion, temporada, paises} = req.body;
     try{
-        const resp = await createActivitiesDB(name, dificultad, duracion, temporada);
+        const resp = await createActivitiesDB(name, dificultad, duracion, temporada, paises);
         res.status(201).json(resp);
     }catch(error){
         res.status(400).json({error: error.message});
