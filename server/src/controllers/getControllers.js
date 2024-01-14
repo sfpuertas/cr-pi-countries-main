@@ -2,7 +2,7 @@ const { Country, Activity,country_activity } = require('../db');
 const {Op} = require ('sequelize');
 
 const allCountrysDB = async () =>{
-   const aux = await Country.findAll();
+   const aux = await Country.findAll({include:[{model : Activity, attributes: ["name"],through:{attributes: []} }]});
    return(aux);
 };
 

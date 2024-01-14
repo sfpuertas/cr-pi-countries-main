@@ -2,8 +2,9 @@ import { useState } from 'react'
 import './cards.css'
 import Card from '../card/card'
 
-function Cards({allCountries}) {
-  const countriesList = allCountries;
+function Cards({allCountries, pagina}) {
+  const pag = pagina * 10;
+  const countriesList = [...allCountries].splice(pag, 10);
   if(countriesList.length == 0){
     return(
     <div className='no'>

@@ -10,7 +10,7 @@ body{
 }
 
 .home-title{
-    width: 50%;
+    width: 30%;
     margin-top: 5px;
     margin-bottom: 5px;
     font-size: 76px;
@@ -37,6 +37,6 @@ body{
     height: 150px;
     text-align: left;
     display: flex;
-    justify-content: space-between;
+    
 
 }

@@ -47,7 +47,7 @@ useEffect(()=>{
   }
 
   function handleChange(e){
-    e.preventDefault();
+    // e.preventDefault();
     if(e.target.name === 'paises'){
       setInput({...input,
       [e.target.name]:  [e.target.value, ...input.paises]
@@ -106,8 +106,8 @@ useEffect(()=>{
 
   { allCountries.map((elemento, index)=>{
     return(
-      <div>
-    <input type="checkbox" id={index} value={elemento.id} name= 'paises' onChange={handleChange} />
+      <div key= {elemento.name}>
+    <input type="checkbox"  id={index} value={elemento.id} name= 'paises' onChange={handleChange} />
     <label>{elemento.name}</label>
   </div>
     )

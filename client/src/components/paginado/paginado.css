@@ -1,0 +1,10 @@
+.contenedor{
+    color: white;
+    width: 300px;
+    justify-content: space-around;
+    
+}
+.span{
+    color: white;
+    padding: 20px;
+}
