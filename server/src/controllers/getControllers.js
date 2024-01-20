@@ -22,7 +22,7 @@ const allActivitiesDB = async ()=> {
 }
 
 const nameCountryDB = async (name)=>{
-   name= name.charAt(0).toUpperCase() + name.slice(1);
+   name= name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
    const aux = await Country.findAll({where :{name :{[Op.like] : `%${name}%`}}});
    if(!aux.length){
       return([]);

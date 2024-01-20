@@ -8,10 +8,12 @@ export const GET_ACTIVITIES = 'GET_ACTIVITIES';
 export const GET_FILTER = 'GET_FILTER';
 export const GET_ORDER_BY = 'GET_ORDER_BY'
 export const GET_PAGINADO = 'GET_PAGINADO'
+export const SET_VOLVER = 'SET_VOLVER'
 
 
 export function getCountries(){
     return async function(dispatch){
+        
         const response = await axios('http://localhost:3001/countries/');
         return dispatch (
             {
@@ -58,15 +60,15 @@ export function getActivities() {
 }
 
 export function postForm(payload) {
-    console.log(payload)
+    console.log(payload.duracion)
     payload.duracion = parseFloat(payload.duracion)
+    console.log(payload.duracion)
     payload.dificultad = parseInt(payload.dificultad)
     return async function () {
         try {
             const res = await axios.post('http://localhost:3001/activities', payload)
             return res;
         } catch (error) {
-            console.log(error)
         }
     }
 }
@@ -93,6 +95,14 @@ export function getPaginado(payload) {
     return {
        type: GET_PAGINADO,
        payload
+   }
+
+}
+
+export function volver() {
+    return {
+       type: SET_VOLVER,
+       payload : 3
    }
 
 }

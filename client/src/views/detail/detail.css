@@ -1,15 +1,37 @@
 .detail{
     color: white;
+    width: 1000px;
+    height: 700px;
     background-color: black;
     text-align: left;
+    border-radius: 20px;
+    padding-top: 20px;
+    border: 1px solid grey;
+    margin-top: 20px;
+    margin-left: 400px;
+    
 }
 
 .actividades{
     border: 1px solid grey;
     box-shadow: 10px 5px 5px 5px black;
     width: 150px;
+    height: 120px;
     padding: 10px;
+    border-radius: 10px;
 }
 .act{
-    display: flex;
+    display: grid;
+    font-size: medium;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-row-gap: 20px;
+    overflow-y: scroll;
+    height: 150px;
+    
+}
+.det{
+    display: grid;
+    grid-template-columns: 400px 1fr 1fr;
+    grid-column-gap: 100px;
+    width: 100%;
 }

@@ -8,19 +8,17 @@ import Paginado from '../../components/paginado/paginado'
 
 function Home() {
   const dispatch = useDispatch();
+ 
   const allCountries = useSelector((state)=>state.allCountries);
+  const volver = useSelector((state)=>state.volver);
   const [searchString, setSearchString] = useState('');
   const pagina = useSelector((state)=>state.pagina);
   const total = [...allCountries].length;
-  
-  
+ 
   function handleChange(e){
     e.preventDefault()
     setSearchString(e.target.value);
   }
-  
-  
-  //filtro con la base de datos
 
     function handleSubmit(e){
     e.preventDefault();
@@ -33,14 +31,7 @@ function Home() {
   }
 
 
-  //filtro con el estado
-
-  // function handleSubmit(){
-  //   e.preventDefault()
-  //   const filtered = allCountries.filter((user) => user.name.includes(searchString));
-  //   setFiltrados(filtered);
-  // }
-
+  
   useEffect(()=>{
     dispatch(getCountries());
   },[dispatch])

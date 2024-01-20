@@ -1,16 +1,27 @@
-import { GET_COUNTRIES, GET_COUNTRIES_NAME, GET_DETAIL, GET_ACTIVITIES, GET_FILTER, GET_ORDER_BY, GET_PAGINADO } from "../actions";
+import { GET_COUNTRIES, GET_COUNTRIES_NAME, GET_DETAIL, GET_ACTIVITIES, GET_FILTER, GET_ORDER_BY, GET_PAGINADO, SET_VOLVER } from "../actions";
 
-let initialState = {allCountries: [], countriesCopy: [], detail:{}, allActivities:[], pagina : 0};
+let initialState = {allCountries: [], countriesCopy: [], detail:{}, allActivities:[], pagina : 0, volver:0, anterior:[], paginaAnt:0};
 
 function rootReducer(state = initialState, action){
     switch (action.type){
-        case GET_COUNTRIES:
+        case GET_COUNTRIES:{
+            if(state.volver > 0){
+                let anterior = [...state.anterior];
+                return{
+                    ...state,
+                    allCountries: anterior,
+                    volver: state.volver -1,
+                    pagina: state.paginaAnt
+                }
+            }
             return{
                 ...state,
                 allCountries: action.payload,
                 countriesCopy: action.payload,
-                pagina: 0
+                pagina: 0,
+                volver: state.volver -1
             }
+        }
         case GET_COUNTRIES_NAME:
             return{
                 ...state,
@@ -21,8 +32,8 @@ function rootReducer(state = initialState, action){
         case GET_DETAIL:
             return{
                 ...state,
-                detail: action.payload,
-                pagina: 0
+                anterior: state.allCountries,
+                detail: action.payload
            }  
         
         case GET_ACTIVITIES:
@@ -35,6 +46,9 @@ function rootReducer(state = initialState, action){
         case GET_ORDER_BY: {
            
             let ordenados = [...state.allCountries];
+                if(action.payload === 'ninguno'){
+                    ordenados = state.countriesCopy.filter((pais)=>state.allCountries.find((c)=>(c.name === pais.name)))
+                }
                if(action.payload === 'nasc'){
                 ordenados.sort(function (a, b) {
                     if (a.name > b.name) {
@@ -105,7 +119,7 @@ function rootReducer(state = initialState, action){
             }
             case GET_PAGINADO:{
                 if(action.payload === 'next'){
-                    if((state.pagina +1) * 10 > state.allCountries.length){
+                    if((state.pagina +1) * 10 >= state.allCountries.length){
                         return{
                             ...state
                         }
@@ -127,6 +141,12 @@ function rootReducer(state = initialState, action){
                         }
                     }
                 }
+            }
+            case SET_VOLVER:
+                return{
+                ...state,
+                volver: action.payload,
+                paginaAnt: state.pagina
             }
         
             

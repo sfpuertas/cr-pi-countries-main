@@ -18,7 +18,6 @@ function Navbar({handleChange, handleSubmit}) {
 
 
 function handleFilter(e){
-  // e.preventDefault()
   
   if(e.target.value === 'actividad'){
     setFil({...fil, funcion: filtradoActividad()})
@@ -34,7 +33,7 @@ function handleChangeFilter(e){
 
 function filtradoContinente(){
   return(
-    <select name='continente' onChange={handleChangeFilter}>
+    <select name='continente' style={{width:'150px'}} defaultValue={'ninguno'} onChange={handleChangeFilter}>
           <option value="ninguno"  >ninguno</option>
           <option value="South America"  >South America</option>
           <option value="North America"  >North America</option>
@@ -48,7 +47,7 @@ function filtradoContinente(){
 }
 function filtradoActividad(){
   return(
-    <select name='actividad' onChange={handleChangeFilter}>
+    <select name='actividad' style={{width:'150px'}} defaultValue={'ninguno'} onChange={handleChangeFilter}>
           <option value="ninguno"  >ninguno</option>
           {allActivities?.map((activitie)=>{
             return(
@@ -65,11 +64,14 @@ function handleChangeOrderBy(e){
   dispatch(getOrderBy(e.target.value))
 }
 
+function recargar(){
+  window.location.reload()
+}
   return (
     <>
       
       <div className='nav-bar'>
-      <div><Link to = {`/home`} className='link1'>  Home  </Link></div>
+      <div><Link to = {`/Home`} className='link1' onClick={recargar}> Inicio  </Link></div>
       <div><Link to = {`/form`} className='link1'>  Crear actividad  </Link></div>
        <div style={{color:'white'}}> <span className='span'>Filtrar por:   </span>
         continente<input type="radio"  value='continente' name= 'fil' onChange={handleFilter} />
@@ -77,8 +79,8 @@ function handleChangeOrderBy(e){
         </div>
         {fil.funcion}
        
-        <div style={{color:'white'}}>ordenar por:
-         <select onChange={handleChangeOrderBy}>
+        <div style={{color:'white'}}>ordenar por:{' '}    
+         <select defaultValue={'ninguno'} onChange={handleChangeOrderBy}>
           <option value="ninguno">ninguno</option>
           <option value="nasc">nombre A..Z</option>
           <option value="ndes">nombre Z..A</option>
