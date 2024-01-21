@@ -60,9 +60,7 @@ export function getActivities() {
 }
 
 export function postForm(payload) {
-    console.log(payload.duracion)
     payload.duracion = parseFloat(payload.duracion)
-    console.log(payload.duracion)
     payload.dificultad = parseInt(payload.dificultad)
     return async function () {
         try {
