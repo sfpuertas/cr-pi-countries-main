@@ -47,12 +47,11 @@ useEffect(()=>{
     const acti = [...allActivities]
 
     const errors = {};
-    var esta = ''
+    var esta = undefined;
     if(aux.temporada === ''){errors.temporada = 'debe elegir una temporada'}else{errors.temporada = ''};
     if(aux.duracion === '0.0'){errors.duracion = 'debe ingresar la duracion'}else{errors.duracion = ''};
     if(!Number(aux.duracion.split('.')[0])){if(errors.duracion === ''){errors.duracion = 'la hora debe ser un numero'}};
     if(!Number(aux.duracion.split('.')[1]) || Number(aux.duracion.split('.')[1] ) < 0 || Number(aux.duracion.split('.')[1]) > 59){if(errors.duracion === ''){errors.duracion = 'los minutos deben ser un numero entre 0 y 59'}};
-    console.log(aux.paises)
     if(aux.dificultad === ''){errors.dificultad = 'debe elegir una dificultad'}else{errors.dificultad = ''};
     if(aux.paises.length === 0){errors.paises = 'debe asignar al menos un pais'}else{errors.paises = ''};
     if(allActivities.length > 0){esta = acti.find((act)=>{ if(act.name === aux.name){return (aux.name)}})}
@@ -63,6 +62,7 @@ useEffect(()=>{
     if(errors.name === '' && errors.dificultad === '' && errors.duracion === '' && errors.temporada === '' && errors.paises === ''){
       setHabilitado({ok : false});
     }
+    
     return(errors)
     
     }
@@ -72,6 +72,7 @@ useEffect(()=>{
     e.preventDefault();
     alert("actividad creada con exito");
     dispatch(postForm(input));
+    dispatch(getCountries())
     navigate('/Home');
   }
 
@@ -82,13 +83,12 @@ useEffect(()=>{
     if(e.target.name === 'paises'){
       if(aux.paises?.includes(e.target.value)){
         esta =true;
-        console.log('esta')
         setInput({
           ...input,
           paises: aux.paises.filter((pais)=>e.target.value != pais)
         })
       }else{
-        console.log('no esta')
+
       setInput({...input,
       [e.target.name]:  [...input.paises, e.target.value]
       })}
@@ -158,10 +158,17 @@ useEffect(()=>{
       
   }
  
-  
+  if(errors.name === '1' && errors.dificultad === '1' && errors.duracion === '1' && errors.temporada === '1' && errors.paises === '1'){
+    setErrors({
+    name : '',
+    dificultad : '',
+    duracion : '',
+    temporada : '',
+    paises : ''})
+  }
   return (
            
-      <div style={{paddingLeft:'50px 50px 50px 50px', marginLeft:'250px', width:'800px', height:'800px', border: '10px solid white', borderRadius:'10px', backgroundColor:'black'}}>
+      <div style={{paddingLeft:'50px 50px 50px 50px', marginLeft:'500px', width:'800px', height:'800px', border: '10px solid white', borderRadius:'10px', backgroundColor:'black'}}>
         <h1 style={{color:'white'}}>INGRESE LA INFORMACION DE LA NUEVA ACTIVIDAD</h1>
         <form  className='form' onSubmit={handleSubmit}>
         <div>
